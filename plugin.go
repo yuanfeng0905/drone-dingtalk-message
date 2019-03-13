@@ -17,6 +17,7 @@ type (
 
 	// Build `build info`
 	Build struct {
+		Action string //  providers the current build action
 		Status string //  providers the current build status
 		Link   string //  providers the current build link
 	}
@@ -133,17 +134,15 @@ func (p *Plugin) Exec() error {
 func (p *Plugin) markdownTpl() string {
 	var tpl string
 
-	//  title
-	title := fmt.Sprintf(" %s *Branch Build %s*",
-		strings.Title(p.Drone.Commit.Branch),
-		strings.Title(p.Drone.Build.Status))
+	title := fmt.Sprintf("*Build %s %s* \n", p.Drone.Build.Action, p.Drone.Build.Status)
 	//  with color on title
 	if p.Extra.Color.WithColor {
 		title = fmt.Sprintf("<font color=%s>%s</font>", p.getColor(), title)
 	}
-
-	tpl = fmt.Sprintf("# %s \n", title)
-
+	tpl = fmt.Sprintf("# 状态：%s \n", title)
+	tpl += fmt.Sprintf("# 项目：%s \n", p.Drone.Repo.FullName)
+	tpl += fmt.Sprintf("# 分支：%s \n", p.Drone.Commit.Branch)
+	tpl += fmt.Sprintf("--- \n")
 	// with pic
 	if p.Extra.Pic.WithPic {
 		tpl += fmt.Sprintf("![%s](%s)\n\n",
@@ -169,11 +168,10 @@ func (p *Plugin) markdownTpl() string {
 	authorInfo := fmt.Sprintf("`%s(%s)`", p.Drone.Commit.Authors.Name, p.Drone.Commit.Authors.Email)
 	tpl += authorInfo + "\n\n"
 
-	//  build detail link
-	buildDetail := fmt.Sprintf("[Click To The Build Detail Page %s](%s)",
-		p.getEmoticon(),
+	buildDetail := fmt.Sprintf("[>>查看日志](%s)",
 		p.Drone.Build.Link)
 	tpl += buildDetail
+
 	return tpl
 }
 
@@ -208,22 +206,6 @@ func (p *Plugin) baseTpl() string {
 	}
 
 	return tpl
-}
-
-/**
-get emoticon
-*/
-func (p *Plugin) getEmoticon() string {
-	emoticons := make(map[string]string)
-	emoticons["success"] = ":)"
-	emoticons["failure"] = ":("
-
-	emoticon, ok := emoticons[p.Drone.Build.Status]
-	if ok {
-		return emoticon
-	}
-
-	return ":("
 }
 
 /**

@@ -1,6 +1,13 @@
 GO ?= go
 PACKAGES ?= $(shell $(GO) list ./...)
 
+
+build:
+	docker build -t hub.azoyagroup.com/drone-plugins/dingtalk-message:latest .
+
+push:
+	docker push hub.azoyagroup.com/drone-plugins/dingtalk-message:latest
+
 vet:
 	$(GO) vet $(PACKAGES)
 

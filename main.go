@@ -45,6 +45,7 @@ func main() {
 		cli.StringFlag{
 			Name:   "config.message.type,message_type",
 			Usage:  "dingtalk message type, like text, markdown, action card, link and feed card...",
+			Value:  "markdown",
 			EnvVar: "PLUGIN_MSG_TYPE,PLUGIN_TYPE,PLUGIN_MESSAGE_TYPE",
 		},
 		cli.StringFlag{
@@ -96,7 +97,12 @@ func main() {
 		cli.StringFlag{
 			Name:   "repo.fullname",
 			Usage:  "providers the full name of the repository",
-			EnvVar: "DRONE_REPO",
+			EnvVar: "DRONE_REPO_NAME",
+		},
+		cli.StringFlag{
+			Name:   "build.action",
+			Usage:  "build action",
+			EnvVar: "DRONE_BUILD_ACTION",
 		},
 		cli.StringFlag{
 			Name:   "build.status",
@@ -161,6 +167,7 @@ func run(c *cli.Context) {
 			},
 			//  build info
 			Build: Build{
+				Action: c.String("build.action"),
 				Status: c.String("build.status"),
 				Link:   c.String("build.link"),
 			},
