@@ -134,7 +134,7 @@ func (p *Plugin) Exec() error {
 func (p *Plugin) markdownTpl() string {
 	var tpl string
 
-	title := fmt.Sprintf("*Build %s %s* \n", p.Drone.Build.Action, p.Drone.Build.Status)
+	title := strings.Title(fmt.Sprintf("*Build %s %s* \n", p.Drone.Build.Action, p.Drone.Build.Status))
 	//  with color on title
 	if p.Extra.Color.WithColor {
 		title = fmt.Sprintf("<font color=%s>%s</font>", p.getColor(), title)

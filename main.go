@@ -49,7 +49,8 @@ func main() {
 			EnvVar: "PLUGIN_MSG_TYPE,PLUGIN_TYPE,PLUGIN_MESSAGE_TYPE",
 		},
 		cli.StringFlag{
-			Name:   "config.message.at.all",
+			Name:   "config.message.at.all,at_all",
+			Value:  "true",
 			Usage:  "at all in a message(only text and markdown type message can at)",
 			EnvVar: "PLUGIN_MSG_AT_ALL",
 		},
@@ -136,7 +137,7 @@ func main() {
 			EnvVar: "FAILURE_COLOR,PLUGIN_FAILURE_COLOR",
 		},
 		cli.BoolFlag{
-			Name:   "config.message.color",
+			Name:   "config.message.color,with_color",
 			Usage:  "configure the message with color or not",
 			EnvVar: "PLUGIN_COLOR,PLUGIN_MESSAGE_COLOR",
 		},
