@@ -2,6 +2,16 @@ kind: pipeline
 name: publish
 
 steps:
+- name: build
+  image: golang
+  commands:
+    - go build .
+
+- name: executable
+  image: golang
+  commands:
+    - ./drone-dingtalk-message -h
+
 - name: publish
   image: plugins/docker
   settings:

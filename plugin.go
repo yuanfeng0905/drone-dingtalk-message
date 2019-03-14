@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
 	"strings"
 
 	webhook "github.com/lddsb/dingtalk-webhook"
