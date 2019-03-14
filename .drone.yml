@@ -12,17 +12,6 @@ steps:
       from_secret: harbor_password
     repo: hub.azoyagroup.com/drone-plugins/drone-dingtalk-message
     registry: hub.azoyagroup.com
-
-# - name: dingtalk
-#   image: hub.azoyagroup.com/drone-plugins/dingtalk-message
-#   pull: always
-#   settings:
-#     token: 36eae91b22003633e708dfd766f262347162e5afbfb3a3410533ac1363a5280e
-#     with_color: true
-#   when:
-#     status:
-#       - failure
-#       - success
   
 trigger: 
   branch:
