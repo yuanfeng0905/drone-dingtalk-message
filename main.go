@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	_ "github.com/joho/godotenv/autoload"
@@ -24,6 +23,7 @@ func main() {
 		},
 	}
 	app.Action = run
+	app.ExitErrHandler = exit
 	app.Version = Version
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{
@@ -49,13 +49,12 @@ func main() {
 			EnvVar: "PLUGIN_MSG_TYPE,PLUGIN_TYPE,PLUGIN_MESSAGE_TYPE",
 		},
 		cli.StringFlag{
-			Name:   "config.message.at.all,at_all",
-			Value:  "true",
+			Name:   "config.message.at.all,msg_at_all",
 			Usage:  "at all in a message(only text and markdown type message can at)",
 			EnvVar: "PLUGIN_MSG_AT_ALL",
 		},
 		cli.StringFlag{
-			Name:   "config.message.at.mobiles",
+			Name:   "config.message.at.mobiles,msg_at_mobiles",
 			Usage:  "at someone in a dingtalk group need this guy bind's mobile",
 			EnvVar: "PLUGIN_MSG_AT_MOBILES",
 		},
@@ -153,13 +152,11 @@ func main() {
 		},
 	}
 
-	if err := app.Run(os.Args); nil != err {
-		log.Println(err)
-	}
+	app.Run(os.Args)
 }
 
 //  run with args
-func run(c *cli.Context) {
+func run(c *cli.Context) error {
 	plugin := Plugin{
 		Drone: Drone{
 			//  repo info
@@ -212,7 +209,14 @@ func run(c *cli.Context) {
 		},
 	}
 
-	if err := plugin.Exec(); nil != err {
-		fmt.Println(err)
+	return plugin.Exec()
+}
+
+func exit(c *cli.Context, err error) {
+	if err != nil {
+		fmt.Printf("err: %s\n", err)
+		os.Exit(-1)
 	}
+
+	fmt.Println("send message ok")
 }
