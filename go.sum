@@ -1,6 +1,6 @@
-github.com/joho/godotenv v1.3.0 h1:Zjp+RcGpHhGlrMbJzXTrZZPrWj+1vfm90La1wgB6Bhc=
-github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
+github.com/joho/godotenv v0.0.0-20190204044109-5c0e6c6ab1a0 h1:rC6SMh3N4+89smbp92lbvL3NJSVj7Oul9VWc7YXTbgk=
+github.com/joho/godotenv v0.0.0-20190204044109-5c0e6c6ab1a0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
 github.com/lddsb/dingtalk-webhook v0.0.0-20190307231412-b4abe34b5fa9 h1:ZeUdCEbcT0+l10jTSyjU9+18ZbDTz6TdkH6yGiCd9dQ=
 github.com/lddsb/dingtalk-webhook v0.0.0-20190307231412-b4abe34b5fa9/go.mod h1:5E+/sOBb6m+3ztqnZl4danEY3I5FeIwb12v12s9osbw=
-github.com/urfave/cli v1.20.0 h1:fDqGv3UG/4jbVl/QkFwEdddtEDjh/5Ov6X+0B/3bPaw=
-github.com/urfave/cli v1.20.0/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
+github.com/urfave/cli v0.0.0-20190203184040-693af58b4d51 h1:laC7vBFpaVCak13N8MQB85P0SzzosgQIis3nbqs4Mmk=
+github.com/urfave/cli v0.0.0-20190203184040-693af58b4d51/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
