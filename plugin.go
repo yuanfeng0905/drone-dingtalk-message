@@ -123,10 +123,6 @@ func (p *Plugin) Exec() error {
 		err = errors.New(msg)
 	}
 
-	if err == nil {
-		log.Println("send message success!")
-	}
-
 	return err
 }
 
